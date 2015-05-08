@@ -1,0 +1,20 @@
+{
+  "name": "jquery.number",
+  "description": "number format by string",
+  "version": "0.1",
+  "repository" : {
+    "type": "git",
+    "url": "https://github.com/otwm"
+  },
+  "author": {
+    "name": "kim dong o",
+    "email": "otwmoo@gmail.com"
+  },
+   "bugs": {
+    "url": "https://github.com/otwm/big.js/issues"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "license": "MIT"
+}
