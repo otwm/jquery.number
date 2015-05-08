@@ -1,2 +1,5 @@
 .prject
 .settings
+.externalToolBuilders
+bower_components
+node_modules

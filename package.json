@@ -1,17 +1,28 @@
 {
   "name": "jquery.number",
   "description": "number format by string",
-  "version": "0.1",
+  "version": "0.1.0",
   "repository" : {
     "type": "git",
-    "url": "https://github.com/otwm"
+    "url": "https://github.com/otwm/jquery.number"
+  },
+  "devDependencies": {
+    "karma": "^0.12.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-jasmine": "^0.1.5",
+    "protractor": "^1.8",
+    "http-server": "^0.6.1",
+    "tmp": "0.0.23",
+    "bower": "^1.3.1",
+    "shelljs": "^0.2.6",
+    "karma-junit-reporter": "^0.2.2"
   },
   "author": {
     "name": "kim dong o",
     "email": "otwmoo@gmail.com"
   },
    "bugs": {
-    "url": "https://github.com/otwm/big.js/issues"
+    "url": "https://github.com/otwm/jquery.number/issues"
   },
   "engines": {
     "node": "*"

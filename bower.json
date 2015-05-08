@@ -1,12 +1,13 @@
 {
-    "name": "big.js",
-    "main": "big.js",
-    "license": "MIT",
-    "ignore": [
-        ".*",
-        "doc",
-        "perf",
-        "test",
-        "*.json"
-    ]
+  "name": "jquery.number",
+  "main": "jquery.number.js",
+  "description": "jquery.number",
+  "version": "0.1",
+  "homepage": "nothing",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.3",
+    "lodash":"latest"
+  }
 }
