@@ -6,6 +6,9 @@
  * 
  * @author kdo
  */
+var kdo = {};
+kdo.number ="jquery.number.bykdo";
+
 $.fn.number = function(number) {
 	var getFormattedNumber = function(number) {
 		number += '';
@@ -26,10 +29,11 @@ $.fn.number = function(number) {
 	}
 
 	var originalVal = $.fn.val;
-
+	$.fn.number.originalVal = originalVal;
+	
 	$.fn.val = function(value) {
 		var $this = $(this);
-		if (!$this.data("jquery.number.bykdo"))
+		if (!$this.data(kdo.number))
 			return originalVal.call(this);
 		if (arguments.length >= 1) {
 			return originalVal.call(this, value);
@@ -39,8 +43,8 @@ $.fn.number = function(number) {
 
 	return this.each(function() {
 		var $this = $(this);
-		$this.data("jquery.number.bykdo", true);
-		$this.keypress(function() {
+		$this.data(kdo.number, true);
+		$this.on("keypress." + kdo.number ,function() {
 			var _$this = $(this);
 			if (!isVaild(event.which))
 				event.preventDefault();
@@ -53,15 +57,26 @@ $.fn.number = function(number) {
 				return false;
 			}
 		});
-		$this.keyup(function() {
+		$this.on("keyup." + kdo.number ,function() {
 			var _$this = $(this);
 			_$this.val(getFormattedNumber(originalVal.call(_$this)));
 		});
-		$this.blur(function() {
+		$this.on("blur." + kdo.number ,function() {
 			var _$this = $(this);
 			_$this.val(originalVal.call(_$this).replace(/[0]*$/, '').replace(
 					/[.]$/, ''));
 		});
 		return $this;
+	});
+
+};
+
+$.fn.number.originalVal = null;
+
+$.fn.unNumber = function(number) {
+	$.fn.val = $.fn.number.originalVal;
+	return this.each(function() {
+		var $this = $(this);
+		$this.off("." + kdo.number);
 	});
 };

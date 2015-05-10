@@ -9,7 +9,7 @@
   <script type="text/javascript" src="../bower_components/jquery/dist/jquery.min.js">
   </script>
   
-  <script type="text/javascript" src="../dist/jquery.number.js">
+  <script type="text/javascript" src="../dist/jquery.number.min.js">
   </script>
   
   <script type="text/javascript">
@@ -24,10 +24,20 @@
 		$("[data-number]").number().keyup(function(){
 			$("span").empty().text(" $(this).val() : " + $(this).val());
 		});
+		
+		$("#unNumber").click(function(){
+			$("[data-number]").unNumber();
+		});
+		
+		$("#reNumber").click(function(){
+			$("[data-number]").unNumber().number();
+		});
 	});
 })();
   </script>
 </head><body>
 <input data-number="true" style="width: 98%;" type="text">
+<button id="unNumber">unNumber</button>
+<button id="reNumber">reNumber</button>
 <span></span>
 </body></html>
