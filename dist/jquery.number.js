@@ -1,13 +1,13 @@
 /**
  * <pre>
- * mit license 
- * https://github.com/otwm/jquery.number.git
+ * mit
+ * licensehttps://github.com/otwm/jquery.number.git
  * </pre>
  * 
  * @author kdo
  */
 var kdo = {};
-kdo.number ="jquery.number.bykdo";
+kdo.number = "jquery.number.bykdo";
 
 $.fn.number = function(number) {
 	var getFormattedNumber = function(number) {
@@ -25,12 +25,16 @@ $.fn.number = function(number) {
 	};
 
 	if (!(typeof number == "undefined")) {
-		return getFormattedNumber(number).replace(/[0]*$/, '');
+		var _result = getFormattedNumber(number);
+		if (/\./g.test(_result)) {
+			return _result.replace(/[0]*$/, '').replace(/[.]$/, '');
+		}
+		return _result;
 	}
 
 	var originalVal = $.fn.val;
 	$.fn.number.originalVal = originalVal;
-	
+
 	$.fn.val = function(value) {
 		var $this = $(this);
 		if (!$this.data(kdo.number))
@@ -38,13 +42,17 @@ $.fn.number = function(number) {
 		if (arguments.length >= 1) {
 			return originalVal.call(this, value);
 		}
-		return originalVal.call(this).replace(/\,/g, '').replace(/[0]*$/, '');
+		var _result = originalVal.call(this).replace(/\,/g, '');
+		if (/\./g.test(_result)) {
+			return _result.replace(/[0]*$/, '').replace(/[.]$/, '');
+		}
+		return _result.replace(/[.]$/, '');
 	};
 
 	return this.each(function() {
 		var $this = $(this);
 		$this.data(kdo.number, true);
-		$this.on("keypress." + kdo.number ,function() {
+		$this.on("keypress." + kdo.number, function() {
 			var _$this = $(this);
 			if (!isVaild(event.which))
 				event.preventDefault();
@@ -57,14 +65,17 @@ $.fn.number = function(number) {
 				return false;
 			}
 		});
-		$this.on("keyup." + kdo.number ,function() {
+		$this.on("keyup." + kdo.number, function() {
 			var _$this = $(this);
 			_$this.val(getFormattedNumber(originalVal.call(_$this)));
 		});
-		$this.on("blur." + kdo.number ,function() {
+		$this.on("blur." + kdo.number, function() {
 			var _$this = $(this);
-			_$this.val(originalVal.call(_$this).replace(/[0]*$/, '').replace(
-					/[.]$/, ''));
+			var _result = originalVal.call(_$this);
+			if (/\./g.test(_result)) {
+				_result = _result.replace(/[0]*$/, '').replace(/[.]$/, '');
+			}
+			_$this.val(_result.replace(/[.]$/, ''));
 		});
 		return $this;
 	});
