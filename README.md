@@ -10,13 +10,13 @@ jquery normal number formatter on string based
 
 #how to use
 
-ex)
-$("[data-number]").number(); //bind event
-
-$("[data-number]").unNumber(); //unbind event
-
-//override $(this).val()
-//$(this).val() : 7,888 => 7888
-$("[data-number]").number().keyup(function(){
-    $("span").empty().text(" $(this).val() : " + $(this).val());
-});
+ex)     
+$("[data-number]").number(); //bind event       
+        
+$("[data-number]").unNumber(); //unbind event       
+        
+//override $(this).val()        
+//$(this).val() : 7,888 => 7888     
+$("[data-number]").number().keyup(function(){       
+    $("span").empty().text(" $(this).val() : " + $(this).val());        
+});     
